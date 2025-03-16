@@ -1,0 +1,48 @@
+body {
+   background: #8ddafd;
+    font-family: Arial, sans-serif;
+    /* background-image: url(https://i.pinimg.com/736x/d2/8a/48/d28a488054135a54ad5a56c75d3c804f.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center; */
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #e2ebf0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card {
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.profile-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profile-email,
+.profile-address {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin-top: 20px;
+}
