@@ -25,6 +25,11 @@
           <input type="text" placeholder="Name" name="name" required />
           <input type="email" placeholder="Email" name="email" required />
           <input type="password" placeholder="Password" name="password" required />
+          <input type="password" placeholder="Confirm Password" name="confirmPassword" required />
+          <div class="show-password-container">
+            <input type="checkbox" id="showPassword">
+            <label for="showPassword">Show_Password</label>
+          </div>
           <button type="submit" id="submitBTN">Sign Up</button>
         </form>
       </div>
@@ -42,6 +47,10 @@
           <span>...or use your email and password</span>
           <input type="email" placeholder="Email" name="email" required />
           <input type="password" placeholder="Password" name="password" required />
+          <div class="show-password-container">
+            <input type="checkbox" id="showLoginPassword">
+            <label for="showLoginPassword">Show_Password</label>
+          </div>
           <a href="#">Forget Your Password?</a>
           <button type="submit" id="loginBTN">Sign in</button>
         </form>
@@ -109,6 +118,8 @@
       const modal = document.getElementById("modal");
       const modalMessage = document.getElementById("modalMessage");
       const closeModal = document.getElementsByClassName("close")[0];
+      const showPassword = document.getElementById("showPassword");
+      const showLoginPassword = document.getElementById("showLoginPassword");
 
       registerBtn.addEventListener('click', () => {
         container.classList.add("active");
@@ -138,11 +149,31 @@
         modal.style.display = "block";
       }
 
+      showPassword.addEventListener('change', () => {
+        const password = signUpForm.password;
+        const confirmPassword = signUpForm.confirmPassword;
+        const type = showPassword.checked ? 'text' : 'password';
+        password.type = type;
+        confirmPassword.type = type;
+      });
+
+      showLoginPassword.addEventListener('change', () => {
+        const password = loginForm.password;
+        password.type = showLoginPassword.checked ? 'text' : 'password';
+      });
+
       signUpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const name = signUpForm.name.value;
         const email = signUpForm.email.value;
         const password = signUpForm.password.value;
+        const confirmPassword = signUpForm.confirmPassword.value;
+
+        if (password !== confirmPassword) {
+          display.textContent = "Passwords do not match.";
+          showModal("Passwords do not match.", true);
+          return;
+        }
 
         console.log("Sign Up Form Submitted");
         console.log("Name:", name);
