@@ -94,15 +94,16 @@ footer {
     font-size: large;
 }
 
+/* General styles for the sliding background */
 .sliding-background {
     position: absolute;
-    top: 15%;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url(../Images/homewallpaper.jpg) no-repeat center center;
+    background: url('../Images/homewallpaper.jpg') no-repeat center center;
     background-size: cover;
-    animation: zoom 30s linear infinite;
+    z-index: -1;
 }
 
 .typing {
@@ -121,5 +122,43 @@ footer {
     }
     100% {
         transform: scale(1.5);
+    }
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    /* Hide the sliding background wallpaper */
+    .sliding-background {
+        display: none;
+    }
+
+    /* Adjust the navbar layout */
+    nav ul {
+        display: flex;
+        flex-direction: column; /* Stack the navbar items vertically */
+        align-items: center;
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Add spacing between navbar items */
+    }
+
+    /* Adjust the login button position */
+    .login-button {
+        margin-top: 10px;
+    }
+
+    /* Display "About Us" and "Services" sections in columns */
+    main {
+        display: flex;
+        flex-direction: column; /* Stack the sections vertically */
+        align-items: center;
+    }
+
+    main section {
+        width: 90%; /* Make sections take up most of the screen width */
+        margin-bottom: 20px; /* Add spacing between sections */
+        text-align: center; /* Center-align the text */
     }
 }

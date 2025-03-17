@@ -237,6 +237,11 @@ body {
     color: #3889f3;
 }
 
+/* Ensure the Add to Cart button stays visible */
+.navbar-nav .nav-item .nav-link {
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .footer-container {
@@ -247,6 +252,25 @@ body {
 
     .footer-section {
         margin: 10px 0;
+    }
+
+    /* Ensure the navbar collapses into the hamburger menu */
+    .navbar-collapse {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px; /* Add spacing between items */
+    }
+
+    /* Ensure the Add to Cart button stays visible */
+    .navbar-nav .nav-item .nav-link {
+        text-align: left; /* Align text to the left */
     }
 }
 
