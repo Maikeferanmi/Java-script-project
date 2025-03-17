@@ -13,7 +13,6 @@
             height: 200px;
             object-fit: cover; /* Ensures the image covers the entire area while maintaining aspect ratio */
             border-radius: 50%; /* Makes the image circular */
-            
         }
     </style>
 </head>
@@ -21,7 +20,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <img src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/business-logo-design-template-4d8f6de6062a7469b7f6233cb503c25a_screen.jpg?ts=1643618928" alt="" width="70" height="70">
+            <img src="../Images/logo.jpg" alt="" width="70" height="70">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,18 +39,13 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             CONTACT
                         </a>
-                        
                     </li>
                 </ul>
                 <form class="d-flex me-auto">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" m-r-10>
-                    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
                 </form>
                 <ul class="navbar-nav">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="profile.html">User Profile</a>
-                    </li> -->
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="#" onclick="logout()">Logout</a>
                     </li>
                     <li class="nav-item">
@@ -100,31 +94,33 @@
 
         onAuthStateChanged(auth, async (user) => {
             if (user) {
+                console.log("User is signed in:", user);
                 const userDoc = doc(db, "users", user.uid);
                 const userDocSnap = await getDoc(userDoc);
 
                 if (userDocSnap.exists()) {
                     const userData = userDocSnap.data();
-                    document.getElementById("profile-name").textContent = userData.name;
-                    document.getElementById("profile-email").textContent = userData.email;
-                    document.getElementById("profile-address").textContent = userData.address || "No address provided";
+                    console.log("User data:", userData);
+                    document.getElementById("profile-name").textContent = `Name: ${userData.name}`;
+                    document.getElementById("profile-email").textContent = `Email: ${userData.email}`;
+                    document.getElementById("profile-address").textContent = `Address: ${userData.address || "No address provided"}`;
                 } else {
                     console.log("No such document!");
                 }
             } else {
-                // User is signed out
+                console.log("User is signed out");
                 window.location.href = "index.html"; // Redirect to login page
             }
         });
 
-        function logout() {
-            auth.signOut().then(() => {
-                alert("Logged out successfully!");
-                window.location.href = "index.html"; // Redirect to sign-in page
-            }).catch((error) => {
-                console.error("Error logging out:", error);
-            });
-        }
+        // function logout() {
+        //     auth.signOut().then(() => {
+        //         alert("Logged out successfully!");
+        //         window.location.href = "home.html"; // Redirect to sign-in page
+        //     }).catch((error) => {
+        //         console.error("Error logging out:", error);
+        //     });
+        // }
 
         function editProfile() {
             // Implement edit profile functionality here
