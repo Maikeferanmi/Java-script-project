@@ -1,5 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="../Css/home.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+</head>
+<body>
+    <div class="sliding-background"></div>
+    <header>
+        <h1>Welcome to Beauty Store</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li class="login-button"><a href="index.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>About Us</h2>
+            <p id="about-text" class="typing"></p>
+        </section>
+        <section>
+            <h2>Services</h2>
+            <p id="services-text" class="typing"></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Beauty Store. All rights reserved.</p>
+    </footer>
+    <script>
+        const aboutText = "Welcome to Beauty Store, your ultimate destination for all things beauty! We are a passionate team dedicated to bringing you the finest selection of skincare, cosmetics, haircare. At Beauty Store, we believe that beauty is for everyone, and we are committed to offering products that cater to all skin types, hair textures, and personal preferences. Join us in celebrating your unique beauty and let us help you look and feel your best every day.";
+        const servicesText = "At Beauty Store, we believe that beauty is not just a product; it's an experience. Our mission is to empower individuals by providing high-quality beauty products and exceptional customer service in a welcoming environment. Whether you are looking for skincare essentials, makeup, hair care, or wellness products, we have something for everyone.";
+
+        function typeText(elementId, text, delay) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    document.getElementById(elementId).innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, delay);
+                }
+            }
+            type();
+        }
+
+        typeText('about-text', aboutText, 50);
+        typeText('services-text', servicesText, 50);
+    </script>
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -222,4 +278,4 @@
       });
     </script>
   </body>
-</html>
+</html> -->

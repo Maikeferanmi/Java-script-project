@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -53,4 +53,229 @@
         typeText('services-text', servicesText, 50);
     </script>
 </body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="../Css/style.css" />
+    <script src="../javaScript/logout.js" type="module"></script>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  </head>
+
+  <body>
+    <div class="container" id="container">
+      <div class="form-container sign-up">
+        <form id="signUpForm">
+          <h1>Create Account.</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social"><i class="fab fa-whatsapp"></i></a>  
+            <a href="#" class="social"><i class="fab fa-github"></i></a>
+          </div>
+          <span>...or use your email for registration</span>
+          <input type="text" placeholder="Name" name="name" required />
+          <input type="email" placeholder="Email" name="email" required />
+          <input type="password" placeholder="Password" name="password" required />
+          <input type="password" placeholder="Confirm Password" name="confirmPassword" required />
+          <div class="show-password-container">
+            <input type="checkbox" id="showPassword">
+            <label for="showPassword">Show_Password</label>
+          </div>
+          <button type="submit" id="submitBTN">Sign Up</button>
+        </form>
+      </div>
+  
+      <div class="form-container sign-in">
+        <form id="loginForm">
+          <h1>Sign In.</h1>
+          <div class="social-icons">
+            <a href="#" class="icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social"><i class="fab fa-whatsapp"></i></a> 
+            <a href="#" class="social"><i class="fab fa-github"></i></a>
+          </div>
+          <span>...or use your email and password</span>
+          <input type="email" placeholder="Email" name="email" required />
+          <input type="password" placeholder="Password" name="password" required />
+          <div class="show-password-container">
+            <input type="checkbox" id="showLoginPassword">
+            <label for="showLoginPassword">Show_Password</label>
+          </div>
+          <a href="#">Forget Your Password?</a>
+          <button type="submit" id="loginBTN">Sign in</button>
+        </form>
+        <div style="color: red;" id="display"></div>
+        <div style="color: greenyellow;" id="displayLogin"></div>
+      </div>
+
+      <div class="toggle-container">
+        <div class="toggle">
+          <div class="toggle-panel toggle-left">
+              <h1>Welcome Back!</h1>
+              <p>Enter your personal details to use all of site features</p>
+              <button class="hidden" id="login">Sign In</button>  
+          </div>
+          <div class="toggle-panel toggle-right">
+              <h1>Hello, Friend!</h1>
+              <p>Register with your personal details to use all of site features</p>
+              <button class="hidden" id="register">Sign Up</button> 
+          </div>
+        </div>
+      </div> 
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="modalMessage"></p>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword
+      } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyDBDFtnMM8etr9ceVHMgP2cvsoBZSNL0MM",
+        authDomain: "e-commerce-53e53.firebaseapp.com",
+        projectId: "e-commerce-53e53",
+        storageBucket: "e-commerce-53e53.firebasestorage.app",
+        messagingSenderId: "79474275158",
+        appId: "1:79474275158:web:05b4acc2d4dca24c00dcf7"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const colRef = collection(db, "users");
+      const auth = getAuth(app);
+
+      const signUpForm = document.getElementById("signUpForm");
+      const loginForm = document.getElementById("loginForm");
+      const display = document.getElementById("display");
+      const displayLogin = document.getElementById("displayLogin");
+      const container = document.getElementById('container');
+      const registerBtn = document.getElementById('register');
+      const loginBtn = document.getElementById('login');
+      const modal = document.getElementById("modal");
+      const modalMessage = document.getElementById("modalMessage");
+      const closeModal = document.getElementsByClassName("close")[0];
+      const showPassword = document.getElementById("showPassword");
+      const showLoginPassword = document.getElementById("showLoginPassword");
+
+      registerBtn.addEventListener('click', () => {
+        container.classList.add("active");
+      });
+
+      loginBtn.addEventListener('click', () => {
+        container.classList.remove("active");
+      });
+
+      closeModal.addEventListener('click', () => {
+        modal.style.display = "none";
+      });
+
+      window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      function showModal(message, isError = false) {
+        modalMessage.textContent = message;
+        if (isError) {
+          modal.classList.add("modal-error");
+        } else {
+          modal.classList.remove("modal-error");
+        }
+        modal.style.display = "block";
+      }
+
+      showPassword.addEventListener('change', () => {
+        const password = signUpForm.password;
+        const confirmPassword = signUpForm.confirmPassword;
+        const type = showPassword.checked ? 'text' : 'password';
+        password.type = type;
+        confirmPassword.type = type;
+      });
+
+      showLoginPassword.addEventListener('change', () => {
+        const password = loginForm.password;
+        password.type = showLoginPassword.checked ? 'text' : 'password';
+      });
+
+      signUpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = signUpForm.name.value;
+        const email = signUpForm.email.value;
+        const password = signUpForm.password.value;
+        const confirmPassword = signUpForm.confirmPassword.value;
+
+        if (password !== confirmPassword) {
+          display.textContent = "Passwords do not match.";
+          showModal("Passwords do not match.", true);
+          return;
+        }
+
+        console.log("Sign Up Form Submitted");
+        console.log("Name:", name);
+        console.log("Email:", email);
+        console.log("Password:", password);
+
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          await addDoc(colRef, {
+            uid: userCredential.user.uid,
+            name: name,
+            email: email
+          });
+          displayLogin.textContent = "Sign up successful. Please log in.";
+          showModal("Sign up successful. Please log in.");
+          container.classList.remove("active");
+        } catch (error) {
+          display.textContent = error.message;
+          showModal(error.message, true);
+          console.error("Error during sign up:", error);
+        }
+      });
+
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = loginForm.email.value;
+        const password = loginForm.password.value;
+
+        console.log("Login Form Submitted");
+        console.log("Email:", email);
+        console.log("Password:", password);
+
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          displayLogin.textContent = "Login successful.";
+          displayLogin.style.color = "green"; 
+          showModal("Login successful.");
+          setTimeout(() => {
+            window.location.href = "landingpage.html"; 
+          }, 4000);
+        } catch (error) {
+          display.textContent = "Incorrect email or password.";
+          showModal("Incorrect email or password.", true);
+          console.error("Error during login:", error);
+        }
+      });
+    </script>
+  </body>
 </html>
