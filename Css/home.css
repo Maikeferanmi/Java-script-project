@@ -4,6 +4,7 @@ body {
     padding: 0;
     color: #ffffff;
     overflow: hidden;
+    background-color: plum;
 }
 
 header {
@@ -23,17 +24,19 @@ header h1 {
 }
 
 nav ul {
-    list-style: none;
+    display: flex; 
+    flex-direction: row; 
+    justify-content: center; 
+    align-items: center; 
+    list-style: none; 
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20em;
+    margin: 0;
 }
 
 nav ul li {
     margin: 0 1rem;
     transition: transform 0.3s ease, color 0.3s ease;
+    margin: 0 15px 0 50px;
    
 }
 
@@ -42,11 +45,12 @@ nav ul li a {
     text-decoration: none;
     transition: transform 0.3s ease, color 0.3s ease;
     font-weight: bold;
+    font-size: 1rem;
    
 }
 
 nav ul li a:hover {
-    color: #ff6347;
+    color: #6f3aeb;
     transform: translateY(-5px);
 }
 
@@ -140,10 +144,7 @@ footer {
         padding: 0;
     }
 
-    nav ul li {
-        margin: 10px 0; /* Add spacing between navbar items */
-    }
-
+    
     /* Adjust the login button position */
     .login-button {
         margin-top: 10px;
@@ -160,5 +161,24 @@ footer {
         width: 90%; /* Make sections take up most of the screen width */
         margin-bottom: 20px; /* Add spacing between sections */
         text-align: center; /* Center-align the text */
+    }
+
+
+
+    @media (max-width: 768px) {
+            
+
+        body {
+            background-color: rgb(82, 200, 240);
+        }
+
+        nav ul {
+            flex-direction: row; 
+            justify-content: space-around; 
+        }
+
+        nav ul li {
+            margin: 0 10px; 
+        }
     }
 }
