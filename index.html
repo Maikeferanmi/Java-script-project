@@ -36,10 +36,15 @@
     </footer>
     <script>
         const mainHeadingText = "Welcome to Beauty Store"; 
-        const aboutText = "Welcome to Beauty Store, your ultimate destination for all things beauty! We are a passionate team dedicated to bringing you the finest selection of skincare, cosmetics, haircare. At Beauty Store, we believe that beauty is for everyone, and we are committed to offering products that cater to all skin types, and hair textures.";
-        const servicesText = "At Beauty Store, we believe that beauty is not just a product; Our mission is to empower individuals by providing high-quality beauty products and exceptional customer service in a welcoming environment. Whether you are looking for skincare essentials,hair care, or wellness products, we have something for everyone.";
+        const aboutText = "Welcome to Beauty Store, your ultimate destination for all things beauty! We are a passionate team dedicated to bringing you the finest selection of skincare, cosmetics, haircare. At Beauty Store, we believe that beauty is for everyone, and we are committed to offering products that cater to all skin types, hair textures, and personal preferences.";
+        const servicesText = "At Beauty Store, we believe that beauty is not just a product; it's an experience. Our mission is to empower individuals by providing high-quality beauty products and exceptional customer service in a welcoming environment. Whether you are looking for skincare essentials, makeup, hair care, or wellness products, we have something for everyone.";
 
         function typeText(elementId, text, delay) {
+            if (window.innerWidth <= 768) { // Stop animation on smaller screens
+                document.getElementById(elementId).innerHTML = text; // Directly set the text
+                return;
+            }
+
             let i = 0;
             function type() {
                 if (i < text.length) {
@@ -51,7 +56,7 @@
             type();
         }
 
-        
+        // Call the function for each text element
         typeText('main-heading', mainHeadingText, 100);
         typeText('about-text', aboutText, 50);
         typeText('services-text', servicesText, 50); 

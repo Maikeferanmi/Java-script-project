@@ -1,133 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="../Css/profile.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <style>
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover; 
-            border-radius: 50%; 
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
 </head>
 <body>
+   
+    <nav class="navbar">
+        <div class="container">
+            <!-- Logo Section -->
+            <a href="landingpage.html" class="logo">
+                <img src="../Images/logo.jpg " alt="Logo" class="logo-img">
+            </a>
+    
+            <!-- Middle Section: Navigation Links -->
+            <div class="nav-middle" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="landingpage.html">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <img src="../Images/logo.jpg" alt="" width="70" height="70">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="landingpage.html">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PAGES</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SHOP</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            CONTACT
-                        </a>
-                    </li>
-                </ul>
-                <form class="d-flex me-auto">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" m-r-10>
-                </form>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="logout()">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="landingpage.html" onclick="showCart()">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                                <path d="M286.79-81Q257-81 236-102.21t-21-51Q215-183 236.21-204t51-21Q317-225 338-203.79t21 51Q359-123 337.79-102t-51 21Zm400 0Q657-81 636-102.21t-21-51Q615-183 636.21-204t51-21Q717-225 738-203.79t21 51Q759-123 737.79-102t-51 21ZM235-741l110 228h288l125-228H235Zm-30-60h589.07q22.97 0 34.95 21 11.98 21-.02 42L694-495q-11 19-28.56 30.5T627-453H324l-56 104h491v60H277q-42 0-60.5-28t.5-63l64-118-152-322H51v-60h117l37 79Zm140 288h288-288Z"/>
-                            </svg>
-                            <span class="badge bg-danger" id="cart-count">0</span>
-                        </a>
-                    </li>
-                </ul>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products..." class="search-input">
+                    <button type="submit" class="search-btn" >Search</button>
+                </div>
+            </div>
+    
+            <!-- Right Section: Cart, Profile, Logout, and Hamburger -->
+            <div class="nav-right">
+               
+                <a href="#" class="nav-icon" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+                <a href="cart.html" class="nav-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge bg-danger" id="cart-count">0</span>
+                </a>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container mt-5">
-        <h1>User Profile</h1>
+    <!-- Profile Section -->
+    <div class="profile-container">
         <div class="profile-card">
-            <img src="../Images/work.jfif" alt="Profile Image" class="profile-image" style="width: 200px; height: 200px;" >
-            <h2 class="profile-name" id="profile-name">Name: Maike Feranmi</h2>
-            <p class="profile-email" id="profile-email">Email: Maike@gmail.com</p>
-            <p class="profile-address" id="profile-address">Address: 123 Oxford road, Manchester, M3 2EG, UK</p>
-            <button class="btn btn-primary" onclick="editProfile()">Edit Profile</button>
+            <img src="../Images/work.jfif" alt="Profile Picture" class="profile-image">
+            <h2 class="profile-name">Maike Feranmi</h2>
+            <p class="profile-email">Email: Maike@gmail.com</p>
+            <p class="profile-address">Address: 123 Sunset Boulevard, Los Angeles, CA 90001</p>
+            <p class="profile-phone">Phone: +123 456 7890</p>
+            <button class="btn edit-btn" onclick="editProfile()">Edit Profile</button>
         </div>
     </div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
-        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDBDFtnMM8etr9ceVHMgP2cvsoBZSNL0MM",
-            authDomain: "e-commerce-53e53.firebaseapp.com",
-            projectId: "e-commerce-53e53",
-            storageBucket: "e-commerce-53e53.firebasestorage.app",
-            messagingSenderId: "79474275158",
-            appId: "1:79474275158:web:05b4acc2d4dca24c00dcf7"
-        };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                console.log("User is signed in:", user);
-                const userDoc = doc(db, "users", user.uid);
-                const userDocSnap = await getDoc(userDoc);
-
-                if (userDocSnap.exists()) {
-                    const userData = userDocSnap.data();
-                    console.log("User data:", userData);
-                    document.getElementById("profile-name").textContent = `Name: ${userData.name}`;
-                    document.getElementById("profile-email").textContent = `Email: ${userData.email}`;
-                    document.getElementById("profile-address").textContent = `Address: ${userData.address || "No address provided"}`;
-                } else {
-                    console.log("No such document!");
-                }
-            } else {
-                console.log("User is signed out");
-                window.location.href = "index.html"; // Redirect to login page
-            }
-        });
+    <script>
+        function editProfile() {
+            alert("I never input the function!");
+        }
 
         function logout() {
-            auth.signOut().then(() => {
-                alert("Logged out successfully!");
-                window.location.href = "home.html"; // Redirect to sign-in page
-            }).catch((error) => {
-                console.error("Error logging out:", error);
-            });
-        }
-
-        function editProfile() {
-            // Implement edit profile functionality here
-            alert("Edit profile functionality not implemented yet.");
+            
+            localStorage.removeItem('user');
+            sessionStorage.removeItem('user'); 
+            
+            window.location.href = "Home.html"; 
         }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
     <script src="../Js/logout.js" type="module"></script>
+    <script src="../Js/hamburger.js"></script>
+    
+
 </body>
 </html>

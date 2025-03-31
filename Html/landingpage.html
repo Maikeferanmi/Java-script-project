@@ -1,65 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en">    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing_Page</title>
+    <title>Landing Page</title>
     <link rel="stylesheet" href="../Css/landingpage.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <style>
-        .contact-us-image {
-            height: 100%;
-            object-fit: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js"></script>
 </head>
 <body>
+   
+    <nav class="navbar">
+        <div class="container">
+            <!-- Logo Section -->
+            <a href="landingpage.html" class="logo">
+                <img src="../Images/logo.jpg " alt="Logo" class="logo-img">
+            </a>
+    
+            <!-- Middle Section: Navigation Links -->
+            <div class="nav-middle" id="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="landingpage.html">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-            <img src="../Images/logo.jpg" alt="" width="70" height="70">
-           
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="landingpage.html">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">SHOP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PAGES</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            CONTACT
-                        </a>
-                    </li>
-                </ul>
-                <form class="d-flex me-auto" onsubmit="searchCategories(event)">
-                    <input class="form-control me-2" type="search" placeholder="Search categories" aria-label="Search" id="search-input">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="profile.html">User Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="logout()">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="cart.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
-                                <path d="M286.79-81Q257-81 236-102.21t-21-51Q215-183 236.21-204t51-21Q317-225 338-203.79t21 51Q359-123 337.79-102t-51 21Zm400 0Q657-81 636-102.21t-21-51Q615-183 636.21-204t51-21Q717-225 738-203.79t21 51Q759-123 737.79-102t-51 21ZM235-741l110 228h288l125-228H235Zm-30-60h589.07q22.97 0 34.95 21 11.98 21-.02 42L694-495q-11 19-28.56 30.5T627-453H324l-56 104h491v60H277q-42 0-60.5-28t.5-63l64-118-152-322H51v-60h117l37 79Zm140 288h288-288Z"/>
-                            </svg>
-                            <span class="badge bg-danger" id="cart-count">0</span>
-                        </a>
-                    </li>
-                </ul>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search products..." class="search-input">
+                    <button type="submit" class="search-btn" >Search</button>
+                </div>
+            </div>
+    
+            <!-- Right Section: Cart, Profile, Logout, and Hamburger -->
+            <div class="nav-right">
+                <a href="profile.html" class="nav-icon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="#" class="nav-icon" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+                <a href="cart.html" class="nav-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge bg-danger" id="cart-count">0</span>
+                </a>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
         </div>
     </nav>
@@ -70,7 +60,30 @@
         </div>
     </div>
 
-    <div class="display" id="product-display" style="margin-top: 80px;">
+    <section class="advertisement-section">
+        <!-- Left Section: Text Content -->
+        <div class="advertisement-left">
+            <h2>Discover Amazing Products</h2>
+            <p>Explore our wide range of products tailored to meet your needs. Shop now and enjoy exclusive discounts!</p>
+        </div>
+
+        <!-- Right Section: List or Additional Content -->
+        <div class="advertisement-right">
+            <ul>
+                <li>High-Quality Products</li>
+                <li>Affordable Prices</li>
+                <li>Fast Delivery</li>
+            </ul>
+            <p>Don't miss out on our latest offers!</p>
+        </div>
+
+        <!-- Call-to-Action Button -->
+        <div class="advertisement-button">
+            <a href="#" class="" onclick="showProducts()">Shop Now</a>
+        </div>
+    </section>
+
+    <div class="display" id="product-display" style="margin-top: 20px; display: none;">
         <div style="color: red;" class="errorP" id="errorP"></div>
         <div class="spinner-border text-danger" role="status" id="spinner">
             <span class="visually-hidden">Loading...</span>
@@ -83,36 +96,35 @@
         <button class="btn btn-danger" onclick="clearCart()">Clear Cart</button>
     </div>
 
-    
-    <div class="container mt-5" id="contact-us">
-        <div class="row">
-            <div class="col-md-6" style="padding: 20px;">
-                <img src="../Images/message.jpg" alt="Contact Us Image" class="img-fluid contact-us-image">
+    <section class="contact-us">
+        <div class="contact-container">
+            <!-- Left Section: Image -->
+            <div class="contact-image">
+                <img src="../Images/message.jpg" alt="Contact Us" />
             </div>
-            <div class="col-md-6">
+    
+            <!-- Right Section: Contact Form -->
+            <div class="contact-form">
                 <h2>Contact Us</h2>
-                <form>
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" required>
+                <p>We'd love to hear from you! Please fill out the form below to get in touch.</p>
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required />
                     </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" required>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required />
                     </div>
-                    <div class="mb-3">
-                        <label for="phone" class="form-label">Phone Number</label>
-                        <input type="tel" class="form-control" id="phone" required>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                     </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Message</label>
-                        <textarea class="form-control" id="message" rows="4" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="contact-btn">Send Message</button>
                 </form>
             </div>
         </div>
-    </div>
+    </section>
 
     <footer class="footer">
         <div class="footer-container">
@@ -153,9 +165,7 @@
                     <button type="submit">Subscribe</button>
                 </form>
             </div>
-        </div>
-
-        
+        </div>        
         <div class="footer-bottom">
             <div class="social-icons">
                 <a href="#"><i class="bi bi-facebook"></i></a>
@@ -238,7 +248,7 @@
                             </div>
                             <p style="font-weight: bold">Price: $${price}</p>
                             <button class="btn btn-primary" onclick="addToCart(${product.id}, '${title}', ${price}, '${image}')">Add to Cart</button>
-                            <button class="btn btn-secondary" onclick="toggleDescription(${product.id})">Minimize</button>
+                            
                         `;
                         categorySection.appendChild(productCard);
                     });
@@ -333,7 +343,34 @@
 
         getAllProducts();
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script>
+        function showProducts() {
+            const adSection = document.querySelector('.advertisement-section'); // Select the advertisement section
+            const productDisplay = document.getElementById('product-display'); // Select the product display section
+
+            // Hide the advertisement section
+            adSection.style.display = 'none';
+
+            // Show the product display section
+            productDisplay.style.display = 'block';
+
+            // Fetch and display the products
+            getAllProducts();
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch("navbar.html")
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("navbar-placeholder").innerHTML = data;
+                });
+        });
+    </script>
     <script src="../Js/logout.js" type="module"></script>
+    <script src="../Js/hamburger.js"></script>
+    <script src="../Js/firebase.js"></script>
+    
+
 </body>
 </html>

@@ -5,7 +5,7 @@ const auth = getAuth();
 window.logout = function() {
     auth.signOut().then(() => {
         alert("Logged out successfully!");
-        window.location.href = "home.html"; // Redirect to sign-in page
+        window.location.href = "Home.html";
     }).catch((error) => {
         console.error("Error logging out:", error);
     });

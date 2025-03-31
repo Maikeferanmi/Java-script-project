@@ -90,6 +90,17 @@ body {
 }
 
 .form-container {
+  display: none; /* Hide forms by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-container.sign-in {
+  display: flex; /* Show the sign-in form by default */
+}
+
+.form-container {
     position: absolute;
     top: 0;
     height: 100%;
@@ -272,4 +283,315 @@ body {
     font-size: 14px;
     color: #333;
     cursor: pointer;
+}
+
+/* Hide the small-screen-signup button by default */
+.small-screen-signup {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  /* Hide the toggle-container on smaller screens */
+  .toggle-container {
+    display: none;
+  }
+
+  /* Center the form-container in the container */
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+  }
+
+  /* Center the inputs and buttons in the form */
+  .form-container {
+    width: 100%;
+    max-width: 400px; /* Limit the maximum width */
+    margin: 0 auto;
+  }
+
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    padding: 20px;
+  }
+
+  .form-container input {
+    width: 90%; /* Adjust the width for smaller screens */
+    max-width: 300px; /* Limit the maximum width */
+    margin: 10px 0; /* Add spacing between inputs */
+  }
+
+  .form-container button {
+    width: 90%; /* Adjust the button width */
+    max-width: 300px; /* Limit the maximum width */
+    margin: 10px 0; /* Add spacing between buttons */
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px 0;
+  }
+
+  .form-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form elements horizontally */
+    justify-content: center; /* Center the form elements vertically */
+    padding: 20px;
+  }
+
+  .form-container input {
+    width: 90%; /* Adjust the width for smaller screens */
+    max-width: 300px; /* Limit the maximum width */
+    margin: 10px 0; /* Add spacing between inputs */
+  }
+
+  .form-container button {
+    width: 90%; /* Adjust the button width */
+    max-width: 300px; /* Limit the maximum width */
+    margin: 10px 0; /* Add spacing between buttons */
+  }
+
+  .toggle-container {
+    display: none; /* Hide the toggle container on smaller screens */
+  }
+
+  .modal-content {
+    width: 90%; /* Adjust modal width for smaller screens */
+  }
+
+  /* Align Sign In and Sign Up buttons side by side */
+  .form-container form button {
+    width: auto;
+    margin: 10px 5px;
+  }
+
+  .form-container form .button-group {
+    display: flex;
+
+  .form-container input,
+  .form-container button {
+    font-size: 0.9rem;
+
+  }
+
+  .social-icons a {
+    font-size: 1rem;
+    margin: 0 5px;
+  }
+
+  .form-container .button-group {
+    display: flex; /* Display buttons side by side */
+    justify-content: center; /* Center the buttons */
+    gap: 10px; /* Add spacing between buttons */
+  }
+
+  .small-screen-signup {
+    display: inline-block; /* Ensure the "Sign Up" button is visible */
+  }
+
+  .toggle-container {
+    display: none; /* Hide the toggle-container on smaller screens */
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%; /* Full width for small screens */
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .form-container.sign-up {
+    transform: translateX(-100%); /* Initially off-screen to the left */
+  }
+
+  .form-container.sign-in {
+    transform: translateX(0); /* Initially visible */
+  }
+
+  .container.active .form-container.sign-up {
+    transform: translateX(0); /* Bring the sign-up form into view */
+  }
+
+  .container.active .form-container.sign-in {
+    transform: translateX(100%); /* Move the sign-in form out of view */
+  }
+
+  .button-group {
+    display: flex; /* Display buttons side by side */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 10px; /* Add spacing between the buttons */
+  }
+
+  .button-group button {
+    width: auto; /* Allow buttons to adjust their width */
+    padding: 10px 20px; /* Adjust padding for smaller screens */
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+
+  .form-container.sign-up {
+    position: absolute;
+    top: 0;
+    left: 0; /* Move the sign-up form to the left */
+    width: 100%; /* Full width for small screens */
+    height: 100%; /* Full height for small screens */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .form-container.sign-in {
+    position: absolute;
+    top: 0;
+    left: 100%; /* Move the sign-in form off-screen to the right */
+    width: 100%; /* Full width for small screens */
+    height: 100%; /* Full height for small screens */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .container.active .form-container.sign-up {
+    transform: translateX(0); /* Bring the sign-up form into view */
+  }
+
+  .container.active .form-container.sign-in {
+    transform: translateX(-100%); /* Move the sign-in form off-screen to the left */
+  }
+
+  .toggle-container {
+    display: none; /* Hide the toggle-container on small screens */
+  }
+
+  /* Move sign-up inputs to the left side */
+  .form-container.sign-up {
+    display: flex;
+    flex-direction: row; /* Arrange inputs and buttons horizontally */
+    justify-content: flex-start; /* Align inputs to the left */
+    align-items: flex-start; /* Align items to the top */
+    padding: 20px;
+  }
+
+  .form-container.sign-up form {
+    width: 70%; /* Inputs take 70% of the container width */
+  }
+
+  .form-container.sign-up .button-group {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: flex-start; /* Align buttons to the left */
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 20px; /* Add spacing above buttons */
+  }
+
+  /* Adjust buttons in the toggle */
+  .form-container.sign-up .button-group button {
+    width: auto; /* Allow buttons to adjust their width */
+    padding: 10px 20px; /* Adjust padding for smaller screens */
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+
+  /* Move "Sign In" button below "Sign Up" button */
+  .form-container.sign-up .button-group .sign-in-button {
+    margin-top: 10px; /* Add spacing above the "Sign In" button */
+  }
+
+  .form-container {
+    width: 100%; /* Full width for small screens */
+    height: auto; /* Adjust height automatically */
+    display: none; /* Hide forms by default */
+  }
+
+  .form-container.sign-up,
+  .form-container.sign-in {
+    display: flex; /* Show the active form */
+    flex-direction: column; /* Stack inputs and buttons vertically */
+    align-items: center; /* Center align the form content */
+    padding: 20px;
+  }
+
+  .form-container.sign-up {
+    justify-content: center; /* Center the sign-up form */
+  }
+
+  .form-container.sign-in {
+    justify-content: center; /* Center the sign-in form */
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 10px; /* Add spacing between buttons */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-container form {
+    padding: 10px;
+  }
+
+  .form-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-container input,
+  .form-container button {
+    font-size: 0.9rem;
+    width: 100%; /* Full width for very small screens */
+    max-width: 300px;
+  }
+
+  .social-icons a {
+    font-size: 1rem;
+    margin: 0 5px;
+  }
+
+  #container.container.active{
+    transform: translateY(-50%); /* Center the container on small screens */
+
+  }
 }

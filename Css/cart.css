@@ -1,0 +1,670 @@
+body {
+    margin: 0;
+    background-color: #b7d8fc;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 80px;
+}
+
+/* General Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    z-index: 1000;
+    width: 99%; /* Ensure the navbar spans the full width */
+    top: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Logo Styling */
+.logo-img {
+    height: 50px;
+}
+
+/* Middle Section Styling */
+.nav-middle {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1; /* Allow the middle section to take up available space */
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Right Section Styling */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap:19px;
+    margin-right: 10px;
+    position: relative;
+    justify-content: flex-end;
+}
+
+.user-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px; /* Move closer to the cart icon */
+}
+
+.nav-icon {
+    position: relative; /* Set relative positioning for the cart icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #333;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.nav-icon:hover {
+    color: #007bff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align logo to the far left */
+    margin-left: 10px; 
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: #f8d7e4;
+    color: #333;
+}
+
+#cart-count {
+    background-color: red; /* Red background */
+    color: white; /* White text color */
+    font-size: 12px; /* Adjust font size */
+    font-weight: bold; /* Make the text bold */
+    border-radius: 30%; /* Make it circular */
+    padding: 5px 8px; /* Add padding for size */
+    position: absolute; /* Position it relative to the cart icon */
+    top: -3px; /* Adjust vertical position */
+    right: -26px; /* Adjust horizontal position */
+    display: inline-block; /* Ensure it displays properly */
+    text-align: center; /* Center the text */
+  
+}
+
+/* Hamburger Menu Styling */
+.hamburger {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1100; /* Ensure it appears above other elements */
+   
+}
+
+.hamburger .bar {
+    width: 25px; /* Width of each bar */
+    height: 3px; /* Height of each bar */
+    background-color: #333; /* Bar color */
+    border-radius: 2px; /* Rounded edges */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transitions */
+}
+
+/* Hamburger Active State */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg); /* Top bar rotates */
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0; /* Middle bar disappears */
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg); /* Bottom bar rotates */
+}
+
+/* User Links Styling */
+.user-links {
+    display: none; /* Hidden by default for larger screens */
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.user-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-links a:hover {
+    color: #007bff;
+}
+
+/* Responsive Design */
+@media (max-width:887px) {
+    body{
+        padding-top: 75px;
+    }
+    .hamburger {
+        display: flex; /* Show hamburger on smaller screens */
+       
+    }
+
+    .nav-middle {
+        display: none; /* Hide nav-middle by default on smaller screens */
+    }
+
+    .nav-middle.active {
+        display: flex; /* Show nav-middle when active */
+        flex-direction: column;
+        background-color: #ffffff;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-left: 0; /* Remove left margin */
+    }
+
+    .news-ticker {
+        margin-top: 70px; /* Add margin to avoid overlap with the hamburger */
+    }
+
+    .user-links {
+        display: flex; /* Show user links in the hamburger menu */
+    }
+
+    .nav-right {
+        justify-content: flex-end;
+    }
+}
+
+@media (min-width: 887px) {
+    .hamburger {
+        display: none; /* Hide hamburger on larger screens */
+    }
+
+    .nav-middle {
+        display: flex; /* Show nav-middle on larger screens */
+    }
+
+    .user-links {
+        display: flex; /* Show user links on larger screens */
+        flex-direction: row;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 887px) {
+    /* Ensure the navbar collapses into the hamburger menu */
+    .navbar-collapse {
+        flex-direction: column; /* Stack items vertically */
+    }
+
+    .navbar-nav {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px; /* Add spacing between items */
+    }
+
+    /* Ensure the Add to Cart button stays visible */
+    .navbar-nav .nav-item .nav-link {
+        text-align: left; /* Align text to the left */
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #000000;
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row; /* Ensure items are aligned in a row */
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(5px);
+    background-color: rgba(246, 254, 255, 0.8); 
+    border: 1px solid #bfc7f5;
+    border-radius: 20px;
+    padding: 40px 60px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 15px; /* Add spacing between elements */
+    width: 50%;
+}
+
+#cart-items img {
+    width: 300px; /* Adjust width for better visibility */
+    height: 300px; /* Adjust height for better visibility */
+    object-fit: cover;
+    margin-right: 15px; /* Add spacing between the image and text */
+}
+
+#cart-items strong {
+    font-size: 1.4rem;
+    color: #333;
+    flex: 1; /* Allow the text to take up available space */
+    margin-right: 5px; /* Add spacing between the text and button */
+    text-align: left; /* Align text to the left */
+    
+}
+
+#cart-items p {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #555;
+    flex: 1; /* Allow the text to take up available space */
+    margin-bottom: 90px;
+}
+
+#cart-items button {
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+}
+
+#cart-items button:hover {
+    background-color: #6eadf0;
+}
+
+.quantity-controls {
+    display: flex;
+    flex-direction: row; /* Align buttons and quantity in a row */
+    align-items: center;
+    gap: 10px; /* Add spacing between buttons and quantity */
+}
+
+
+h3 {
+    font-size: 1.9rem;
+    color: #333;
+    margin-top: 20px;
+}
+
+button.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+button.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+button.btn-success:hover {
+    background-color: #1e7e34;
+}
+
+/* Payment Section Styling */
+#payment-section {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 30px 65px;
+    box-shadow: 0 8px 5px rgba(0, 0, 0, 0.1);
+    width: 20%;
+    margin: 50px 0;
+}
+
+#payment-section h3 {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+#payment-section .form-label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+#payment-section .form-control {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+#payment-section .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#payment-section .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add spacing between buttons and quantity */
+}
+
+quantity-controls button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-controls button:hover {
+    background-color: #0056b3;
+}
+
+.cart-section h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+}
+
+button.btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+button.btn-danger:hover {
+    background-color: #a71d2a;
+}
+
+button.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+button.btn-success:hover {
+    background-color: #1e7e34;
+}
+
+/* Payment Section Styling */
+.payment-section {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Default width for larger screens */
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.payment-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+
+
+.payment-section .form-label {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.payment-section .form-control {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.payment-section .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.payment-section .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 887px) {
+    #cart-items div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #cart-items img {
+        margin-bottom: 10px;
+    }
+
+    #payment-section {
+        margin-top: 20px;
+    }
+
+    .cart-payment-container {
+        flex-direction: column; /* Stack cart and payment sections vertically */
+    }
+
+    .payment-section {
+        margin-top: 20px;
+    }
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 887px) {
+    /* Cart Items */
+    .cart-item {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the left */
+        width: 100%; /* Full width for small screens */
+        padding: 20px; /* Reduce padding */
+    }
+
+    #cart-items img {
+        width: 100%; /* Full width for the image */
+        height: auto; /* Maintain aspect ratio */
+        margin-bottom: 10px; /* Add spacing below the image */
+    }
+
+    .cart-item-details {
+        width: 100%; /* Full width for details */
+    }
+
+    .quantity-controls {
+        display: flex;
+        flex-direction: column; /* Stack buttons and quantity vertically */
+        align-items: flex-start; /* Align items to the left */
+        gap: 10px; /* Add spacing between buttons and quantity */
+        width: 100%; /* Full width for quantity controls */
+    }
+
+    .quantity-controls button {
+        width: 10%; /* Make buttons take full width */
+    }
+
+    .quantity-controls span {
+        text-align: left; /* Align the quantity text to the left */
+        width: 100%; /* Full width for the quantity text */
+    }
+
+    
+
+    /* Payment Section */
+    .payment-section {
+        width: 100%; /* Full width for the payment section */
+        margin-top: 20px; /* Add spacing above */
+        padding: 1px; /* Reduce padding */
+        box-shadow: none; /* Remove shadow for simplicity */
+    }
+
+    .payment-section .form-control {
+        width: 100%; /* Make input fields take full width */
+        font-size: 0.9rem; /* Adjust font size for smaller screens */
+        padding: 8px; /* Reduce padding for smaller screens */
+    }
+
+    .payment-section h3 {
+        font-size: 1.2rem; /* Adjust heading size */
+    }
+
+    .payment-section .btn-primary {
+        width: 100%; /* Make the button take full width */
+        font-size: 0.9rem; /* Adjust button font size */
+        padding: 10px; /* Adjust button padding */
+    }
+
+    /* Navbar */
+    .navbar {
+        flex-direction: column; /* Stack navbar items vertically */
+        align-items: flex-start; /* Align items to the left */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .nav-links {
+        flex-direction: column; /* Stack links vertically */
+        gap: 10px; /* Add spacing between links */
+    }
+
+    /* Footer */
+    footer {
+        text-align: center; /* Center-align footer content */
+        padding: 10px; /* Reduce padding */
+    }
+
+    /* General Adjustments */
+    body {
+        padding: 10px; /* Reduce body padding */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Reduce heading size */
+    }
+
+    button {
+        font-size: 0.9rem; /* Reduce button font size */
+        
+    }
+}

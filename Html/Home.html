@@ -52,7 +52,10 @@
             <label for="showLoginPassword">Show_Password</label>
           </div>
           <a href="#">Forget Your Password?</a>
-          <button type="submit" id="loginBTN">Sign in</button>
+          <div class="button-group">
+            <button type="submit" id="loginBTN">Sign In</button>
+            <button type="button" id="register" class="small-screen-signup">Sign Up</button>
+          </div>
         </form>
         <div style="color: red;" id="display"></div>
         <div style="color: greenyellow;" id="displayLogin"></div>
@@ -81,6 +84,7 @@
       </div>
     </div>
 
+    
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
       import {
@@ -113,16 +117,33 @@
       const display = document.getElementById("display");
       const displayLogin = document.getElementById("displayLogin");
       const container = document.getElementById('container');
-      const registerBtn = document.getElementById('register');
+      const registerBtns = document.querySelectorAll('#register'); // Select all "Sign Up" buttons
       const loginBtn = document.getElementById('login');
       const modal = document.getElementById("modal");
       const modalMessage = document.getElementById("modalMessage");
       const closeModal = document.getElementsByClassName("close")[0];
       const showPassword = document.getElementById("showPassword");
       const showLoginPassword = document.getElementById("showLoginPassword");
+      const smallScreenSignUpBtn = document.querySelector('.small-screen-signup');
+      const signUpFormContainer = document.querySelector('.form-container.sign-up');
+      const signInFormContainer = document.querySelector('.form-container.sign-in');
 
-      registerBtn.addEventListener('click', () => {
-        container.classList.add("active");
+      registerBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          container.classList.add("active"); // Add the "active" class to show the sign-up form
+          signInFormContainer.style.display = 'none'; // Hide the sign-in form
+          signUpFormContainer.style.display = 'flex'; // Show the sign-up form
+        });
+      });
+
+      const signInBtns = document.querySelectorAll('#login'); // Select all "Sign In" buttons
+
+      signInBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          container.classList.remove("active"); // Remove the "active" class to show the sign-in form
+          signUpFormContainer.style.display = 'none'; // Hide the sign-up form
+          signInFormContainer.style.display = 'flex'; // Show the sign-in form
+        });
       });
 
       loginBtn.addEventListener('click', () => {
@@ -220,6 +241,14 @@
           console.error("Error during login:", error);
         }
       });
+
+      smallScreenSignUpBtn.addEventListener('click', () => {
+        // Hide the sign-in form and show the sign-up form
+        signInFormContainer.style.display = 'none';
+        signUpFormContainer.style.display = 'flex';
+        signUpFormContainer.style.flexDirection = 'column'; // Ensure proper layout
+      });
     </script>
+    
   </body>
 </html>

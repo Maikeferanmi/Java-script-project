@@ -4,7 +4,7 @@ body {
     padding: 0;
     color: #ffffff;
     overflow: hidden;
-    background-color: plum;
+    background-color: rgb(124, 132, 241);
 }
 
 header {
@@ -100,14 +100,16 @@ footer {
 
 /* General styles for the sliding background */
 .sliding-background {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('../Images/homewallpaper.jpg') no-repeat center center;
-    background-size: cover;
-    z-index: -1;
+    width: 100%; /* Make the background width responsive */
+    height: 100%; /* Make the background height responsive */
+    background-image: url('../Images/homewallpaper.jpg'); /* Replace with your wallpaper image path */
+    background-size: cover; /* Ensure the wallpaper covers the entire screen */
+    background-position: center; /* Center the wallpaper */
+    background-repeat: no-repeat; /* Prevent the wallpaper from repeating */
+    z-index: -1; /* Place the background behind other content */
 }
 
 .typing {
@@ -133,7 +135,9 @@ footer {
 @media (max-width: 768px) {
     /* Hide the sliding background wallpaper */
     .sliding-background {
-        display: none;
+        background-size: contain; /* Adjust the image to fit within the container */
+        background-position: top; /* Align the image to the top */
+        height: 50%; /* Reduce the height for smaller screens */
     }
 
     /* Adjust the navbar layout */
@@ -163,22 +167,52 @@ footer {
         text-align: center; /* Center-align the text */
     }
 
+    body {
+        background-color: rgb(82, 200, 240);
+    }
 
+    nav ul {
+        flex-direction: row; 
+        justify-content: space-around; 
+    }
 
-    @media (max-width: 768px) {
-            
+    nav ul li {
+        margin: 0 10px; 
+    }
+    
+    .sliding-background{
+        display: none;
+    }
 
-        body {
-            background-color: rgb(82, 200, 240);
-        }
+    .typing {
+        animation: none; /* Disable any CSS animations */
+        transition: none; /* Disable transitions */
+    }
 
-        nav ul {
-            flex-direction: row; 
-            justify-content: space-around; 
-        }
+}
 
-        nav ul li {
-            margin: 0 10px; 
-        }
+@media (max-width: 480px) {
+    .sliding-background {
+        background-size: contain; /* Ensure the image fits within the container */
+        background-position: center; /* Center the image */
+        height: 40%; /* Further reduce the height for very small screens */
+        
+    }
+    
+    .typing {
+        animation: none; /* Disable the typing animation */
+        white-space: normal; /* Ensure text wraps normally */
+        overflow: visible; /* Ensure the full text is visible */
+
+    }
+
+    footer {
+        display: none; /* Hide the footer on smaller screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sliding-background {
+        background-size: contain; /* Adjust the background size for smaller screens */
     }
 }
